@@ -14,7 +14,6 @@
  */
 
 #include <SPI.h>
-#include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <nRF24L01.h>
@@ -47,8 +46,9 @@
 #define FRAME_TYPE_BEACON      0x0080
 #define FRAME_TYPE_PROBE       0x0040
 
-// Global objects
-Adafruit_SSD1306 display(OLED_WIDTH, OLED_HEIGHT, &Wire, OLED_RESET);
+// Global objects - Software SPI: CLK, MOSI(miso), MISO(mosi), CS, DC, RST
+// For SSD1306: CLK=SCK, MOSI=SDA, CS=unused(-1), DC=unused(-1), RST=unused(-1)
+Adafruit_SSD1306 display(OLED_WIDTH, OLED_HEIGHT, &SPI, OLED_CLK, OLED_DATA, OLED_RESET, -1);
 RF24 radio(NRF_CE, NRF_CSN);
 
 // Statistics
@@ -122,8 +122,7 @@ void setup() {
     Serial.println("\n=== H1 — Deauth Detector ===");
     Serial.println("Initializing...");
     
-    // Initialize OLED
-    Wire.begin(13, 14);  // SDA, SCL
+    // Initialize OLED with software SPI
     if (!display.begin(SSD1306_SWITCHCAPVCC)) {
         Serial.println("OLED initialization failed!");
         while (1) delay(1000);
@@ -135,6 +134,7 @@ void setup() {
     display.println("H1 Deauth Detector");
     display.println("Initializing...");
     display.display();
+    delay(1000);
     
     // Initialize nRF24L01+
     if (!radio.begin()) {
