@@ -5,6 +5,9 @@
 > [SCOPE.md](SCOPE.md) before use. Use at your own risk; **AS IS**, no warranty.
 # H1 — Deauth Detector
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Platform](https://img.shields.io/badge/platform-ESP32%20%2F%20nRF24L01%2B-blue)
+
 Real-time WiFi deauthentication detection with OLED display and nRF24L01+ monitoring.
 
 ## Overview
@@ -150,3 +153,15 @@ may be within range of any test transmission.
 ## License
 
 MIT
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+Report security issues via [SECURITY.md](SECURITY.md).
+
+## Documentation
+
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — system design
+- [docs/TEST_LOG.md](docs/TEST_LOG.md) — test log
+- [ETHICS.md](ETHICS.md) — usage policy
+- [SCOPE.md](SCOPE.md) — authorized testing scope
